@@ -55,17 +55,6 @@
         </table>
 
     </div>
-
-    <div>
-        <form action="{{route('post.store')}}" method="post">
-            @csrf
-            <div class="form-group">
-                <label for="fio">Текст поста</label>
-                <input type="text" class="form-control" name="text" id="fio" aria-describedby="emailHelp" placeholder="Test">
-            </div>
-            <button type="submit" class="btn btn-primary">Отправить</button>
-        </form>
-    </div>
 </div>
 
 </body>

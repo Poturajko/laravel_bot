@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Events\OrderStore;
-use App\Helpers\Telegram;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class OrderController extends Controller
 {

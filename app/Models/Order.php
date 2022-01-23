@@ -15,6 +15,6 @@ class Order extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('public', 1);
+        return $query->where('public');
     }
 }

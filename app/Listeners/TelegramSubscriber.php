@@ -21,17 +21,12 @@ class TelegramSubscriber
     }
 
     /**
-     * Register the listeners for the subscriber.
+     * Handle the event.
      *
-     * @param \Illuminate\Events\Dispatcher $events
+     * @param \App\Events\OrderStore $event
      * @return void
      */
-    public function subscribe(Dispatcher $events)
-    {
-        $events->listen(OrderStore::class, [__CLASS__, 'orderStore']);
-    }
-
-    public function orderStore($event)
+    public function handle(OrderStore $event)
     {
         $data = [
             'id' => $event->order->id,
@@ -46,28 +41,16 @@ class TelegramSubscriber
                     [
                         [
                             'text' => 'Принять',
-                            'callback_data' => '1|'.$event->order->secret_key,
+                            'callback_data' => '1|' . $event->order->secret_key,
                         ],
                         [
                             'text' => 'Отклонить',
-                            'callback_data' => '0|'.$event->order->secret_key,
+                            'callback_data' => '0|' . $event->order->secret_key,
                         ],
                     ]
                 ]
         ];
 
         $this->telegram->sendButtons(env('REPORT_TELEGRAM_ID'), (string)view('site.messages.new_order', $data), $reply_markup);
-
-    }
-
-    /**
-     * Handle the event.
-     *
-     * @param \App\Events\OrderStore $event
-     * @return void
-     */
-    public function handle(OrderStore $event)
-    {
-        //
     }
 }

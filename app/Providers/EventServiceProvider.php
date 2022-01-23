@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\OrderStore;
 use App\Listeners\TelegramSubscriber;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -19,10 +20,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-    ];
-
-    protected $subscribe = [
-        TelegramSubscriber::class,
+        OrderStore::class => [
+            TelegramSubscriber::class
+        ]
     ];
 
     /**
