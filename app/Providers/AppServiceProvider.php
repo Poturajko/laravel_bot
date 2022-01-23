@@ -15,9 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->app->bind(Telegram::class, function () {
-//            return new Telegram(new Http(), config('bots.bot'));
-//        });
+        $this->app->bind(Telegram::class, function () {
+            return new Telegram(new Http(), env('TELEGRAM_BOT_API_TOKEN'));
+        });
     }
 
     /**

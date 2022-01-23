@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Storage;
 
 class Telegram
 {
-    protected $http;
+    protected Http $http;
     protected $bot;
-    const url = 'https://api.telegram.org/bot';
+    private const url = 'https://api.telegram.org/bot';
 
-    public function __construct(Http $http, $bot)
+    public function __construct(Http $http, ?string $bot = null)
     {
         $this->http = $http;
         $this->bot = $bot;

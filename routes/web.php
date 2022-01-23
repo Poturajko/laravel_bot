@@ -1,6 +1,9 @@
 <?php
 
 use App\Helpers\Telegram;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SiteController;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-//
-});
+Route::get('/', [SiteController::class, 'index']);
+
+Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
+
+Route::post('/webhook', [SiteController::class, 'webhook']);
